@@ -1,0 +1,30 @@
+body {
+    font-family: 'Assistant Medium', sans-serif;
+    background: #0a060f;
+    color: #dfdfdf;
+    text-align: center;
+    font-size: 2em;
+}
+input {
+    padding: 1em;
+    outline: unset;
+    border: unset;
+    background-color: #1a122a;
+    text-align: center;
+    font-size: 1em;
+    color: whitesmoke;
+}
+button {
+    margin-top: 1em;
+    background-color: #d1b018;
+    padding: 1em;
+    color: #09060f;
+    cursor: pointer;
+    font-size: 1.1em;
+    border: unset;
+    min-width: 95px;
+}
+
+button:hover {
+    filter: brightness(1.25);
+}
