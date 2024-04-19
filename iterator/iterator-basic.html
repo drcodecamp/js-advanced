@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Title</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Iterator Basic</h1>
+        <script>
+            function fill(max) {
+                const numberIterator = {
+                    currentNum: 1,
+                    endNum: max,
+                    [Symbol.iterator]() {
+                        return this
+                    },
+                    next() {
+                        if (this.currentNum <= this.endNum) {
+                            return { value: this.currentNum++, done: false }
+                        } else {
+                            return { value: undefined, done: true }
+                        }
+                    },
+                }
+                return [...numberIterator]
+            }
+
+            const filledArray = fill(20)
+            console.log(filledArray)
+        </script>
+    </body>
+</html>

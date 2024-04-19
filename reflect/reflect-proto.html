@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Reflect Example</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Reflect Example</h1>
+        <script>
+            const user = {
+                _name: 'doctor',
+                get name() {
+                    return this._name
+                },
+            }
+            const userProxy = new Proxy(user, {
+                get(target, prop, receiver) {
+                    return Reflect.get(...arguments)
+                },
+            })
+            let admin = {
+                __proto__: userProxy,
+                _name: 'Liat',
+            }
+            console.log(admin.name)
+        </script>
+    </body>
+</html>

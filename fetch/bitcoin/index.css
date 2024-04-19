@@ -1,0 +1,64 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+body{
+    font-size: 16px;
+    margin: 0;
+    background-color: #14161c;
+    height: 100vh;
+    color: white;
+    font-family: "Assistant",sans-serif;
+}
+article{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    font-size: 1.32em;
+    font-weight: bold;
+    cursor: pointer;
+    height: 60px;
+    border: unset;
+    border-radius: 10px;
+    width: 220px;
+    background-color: #14c780;
+}
+button:hover{
+    background-color: #39db9b;
+}
+h1{
+    font-size: 2em;
+    margin:0;
+}
+h2{
+    font-size: 2em;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    flex: 1;
+    text-align: center;
+    background: #252a39;
+    border-radius: 14px;
+    padding: 0.5em;
+}
+article{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+span{
+    font-weight: normal;
+    color: #c2c2c2;
+}

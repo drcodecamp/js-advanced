@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Promise Methods</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Promise Methods</h1>
+        <script>
+            const myPromise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject('למוכר לא היה מספיק תפוחים')
+                }, 3000)
+            })
+
+            myPromise
+                .then((promiseResponse) => {
+                    console.log('the promise was', promiseResponse)
+                })
+                .catch((error) => {
+                    console.log('there was error', error)
+                })
+                .finally(() => {
+                    console.log('The promise has ended.')
+                })
+
+            const promise1 = Promise.resolve(3)
+            const promise2 = 42
+            const promise3 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject()
+                }, 2500)
+            })
+
+            Promise.all([promise1, promise2, promise3])
+                .then((values) => {
+                    console.log(values)
+                    values.map((row, index) => `${index} -> ${row.status}`)
+                })
+                .catch((err) => {
+                    console.log('error in one of them', err)
+                })
+
+            const promise4 = Promise.reject(0)
+            const promise5 = new Promise((resolve) =>
+                setTimeout(resolve, 100, 'quick')
+            )
+            const promise6 = new Promise((resolve) =>
+                setTimeout(resolve, 500, 'slow')
+            )
+
+            Promise.any([promise4, promise5, promise6]).then((value) =>
+                console.log(value)
+            )
+        </script>
+    </body>
+</html>

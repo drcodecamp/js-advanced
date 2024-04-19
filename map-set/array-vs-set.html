@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Set vs Array</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>
+            <span style="color: #c62f8f">Set() </span>VS
+            <span style="color: #14c780">Array</span>
+        </h1>
+        <script>
+            function compareSetVsArrayObjects(arr, set) {
+                for (let i = 0; i < 10_000; i++) {
+                    const user = {
+                        id: i,
+                        name: `user-${i}`,
+                        age: Math.floor(Math.random() * 100),
+                        age2: Math.floor(Math.random() * 100),
+                    }
+                    arr.push(user)
+                    set.add(user)
+                }
+                // Generate 2500 random names
+                const randomNames = Array.from(
+                    { length: 2500 },
+                    () => `user-${Math.floor(Math.random() * 10_000)}`
+                )
+                // Time array find
+                const startTimeArray = performance.now()
+                for (const name of randomNames) {
+                    arr.find((user) => user.name === name)
+                }
+                const endTimeArray = performance.now()
+
+                // Time set has
+                const startTimeSet = performance.now()
+                for (const name of randomNames) {
+                    set.has({ name })
+                }
+                const endTimeSet = performance.now()
+
+                // Print results
+                console.log(
+                    `Array find time: ${endTimeArray - startTimeArray}ms`
+                )
+                console.log(`Set has time: ${endTimeSet - startTimeSet}ms`)
+            }
+
+            // Create empty array and set
+            const arr = []
+            const set = new Set()
+
+            // Run comparison
+            compareSetVsArrayObjects(arr, set)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,92 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+*:where(
+    :not(input, html, iframe, canvas, img, svg, video):not(svg *, symbol *)
+  ) {
+    all: unset;
+    display: revert;
+}
+
+body{
+    font-size: 16px;
+    margin: 0;
+    background-color: #14161c;
+    height: 100vh;
+    color: white;
+    font-family: "Assistant",sans-serif;
+    text-align: center;
+}
+h1{
+    font-size: 2em;
+}
+h3{
+    font-weight: bold;
+    font-size: 0.85em;
+}
+
+h4{
+    font-size: 2.1em;
+    font-weight: bolder;
+}
+header{
+    margin-top: 1em;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+figure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    flex: 1;
+    text-align: center;
+    background: #252a39;
+    border-radius: 14px;
+    padding: 0.5em;
+}
+article{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-top: 1em;
+}
+.team{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+}
+.team img{
+    width: 100px;
+    height:100px;
+}
+.match-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    padding:1em;
+}
+.match-details p{
+    font-size: 0.7em;
+    color: #bbbbbb;
+}
+
+span{
+    font-weight: normal;
+    color: #c2c2c2;
+}
+
+.winner{
+    font-weight: bold;
+    color: #14c780;
+}

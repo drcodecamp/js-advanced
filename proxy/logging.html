@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proxy Logging</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Proxy Logs</h1>
+        <script>
+            const logger = {}
+            const person = {
+                name: 'John Doe',
+                age: 30,
+            }
+            const proxy = new Proxy(person, {
+                get: function (target, property) {
+                    logger[property] = logger[property]
+                        ? logger[property] + 1
+                        : 1
+                    console.log(`גישה למאפיין ${property}`)
+                    return target[property]
+                },
+            })
+            proxy.age
+            proxy.name
+            proxy.name
+            proxy.name
+            console.log('logger:', logger)
+        </script>
+    </body>
+</html>

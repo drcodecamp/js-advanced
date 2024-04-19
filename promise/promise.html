@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basic promise</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Promise</h1>
+        <script async type="module">
+            function getTaxRateFromApi() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve(10)
+                    }, 1000)
+                })
+            }
+            const taxRatePromise = getTaxRateFromApi()
+            taxRatePromise
+                .then((rate) => {
+                    console.log('Tax amount:', (rate * 250) / 100)
+                })
+                .catch((err) => {
+                    console.log('there was an error', err)
+                })
+                .finally(() => {
+                    console.log('finally, its ends!')
+                })
+        </script>
+    </body>
+</html>

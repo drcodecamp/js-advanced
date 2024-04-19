@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proxy Reactive State</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Name</h1>
+        <script>
+            const user = {
+                name: 'John Doe',
+                age: 30,
+            }
+            const proxy = new Proxy(user, {
+                get: function (target, property) {
+                    return target[property]
+                },
+                set: function (target, property, value) {
+                    console.log(`שינוי ערך המאפיין ${property} ל- ${value}`)
+                    target[property] = value
+                    updateView()
+                },
+            })
+            function updateView() {
+                const nameElement = document.querySelector('h1')
+                nameElement.style.color = 'red'
+                nameElement.textContent = proxy.name
+            }
+
+            setTimeout(() => {
+                proxy.name = 'Daniel Boy'
+            }, 1750)
+        </script>
+    </body>
+</html>

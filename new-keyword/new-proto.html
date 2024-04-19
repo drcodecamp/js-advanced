@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>New keyword Basic</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>New Prototype</h1>
+        <script>
+            function Person(person) {
+                this.name = person.name
+                this.age = person.age
+            }
+
+            function createPerson(person) {
+                return {
+                    name: person.name,
+                    age: person.age,
+                }
+            }
+
+            Person.prototype.greet = function () {
+                console.log(
+                    `hello my name is ${this.name} and i am ${this.age} years old.`
+                )
+            }
+
+            const userA = new Person({ name: 'naty', age: 35 })
+            const userB = new Person({ name: 'dani', age: 22 })
+
+            const userC = createPerson({ name: 'liat', age: 62 })
+            const userD = createPerson({ name: 'dana', age: 15 })
+
+            userA.greet() // Adding is simple
+            userC.greet() // Throw Error
+        </script>
+    </body>
+</html>

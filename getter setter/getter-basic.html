@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Getter Basic</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Getter Basic</h1>
+        <script>
+            const user = {
+                _age: 25,
+                get age() {
+                    // Interception here!
+                    return this._age
+                },
+            }
+            console.log(user.age)
+        </script>
+    </body>
+</html>

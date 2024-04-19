@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Setter Basic</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Setter Basic</h1>
+        <script>
+            const user = {
+                _age: 25,
+                get age() {
+                    // Interception!
+                    return this._age
+                },
+                set age(value) {
+                    // Interception!
+                    if (typeof value !== 'number') {
+                        throw Error('Value must be Number!')
+                    }
+                    console.log(`Someone try to set value ${value}`)
+                    this._age = value
+                },
+            }
+            user.age = 12 // Works
+            user.age = 'daniel' // Error
+        </script>
+    </body>
+</html>

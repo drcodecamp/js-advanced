@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pure vs Impure</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Bad way to update Array</h1>
+        <script>
+            const student = {
+                age: 33,
+                name: 'yosef',
+            }
+            const updateUser = (user) => {
+                user.age = user.age + 1
+                return user
+            }
+            console.log('user age?', updateUser(student))
+            console.log('user age?', updateUser(student))
+        </script>
+        <script>
+            const myScores = [100, 100, 90, 58]
+            const updateMyScores = (array) => {
+                array.forEach((score, i) => {
+                    myScores[i] = score * 2
+                })
+            }
+            updateMyScores(myScores)
+            console.log('First run', myScores)
+            updateMyScores(myScores)
+            console.log('Second run', myScores)
+        </script>
+    </body>
+</html>

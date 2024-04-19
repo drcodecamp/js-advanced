@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>New keyword Basic</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>New keyword Basic</h1>
+        <script>
+            function Person(person) {
+                this.name = person.name
+                this.age = person.age
+            }
+            const doctor = new Person({ name: 'doctor', age: 35 })
+            console.log(doctor)
+
+            function createPerson(person) {
+                return {
+                    name: person.name,
+                    age: person.age,
+                }
+            }
+            const liat = createPerson({ name: 'liat', age: 35 })
+            console.log(liat)
+        </script>
+    </body>
+</html>

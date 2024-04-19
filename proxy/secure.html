@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proxy Secure</title>
+
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Proxy Basic</h1>
+        <script>
+            const person = {
+                name: 'John Doe',
+                age: 30,
+                password: 'bestPassword123!',
+            }
+            const proxy = new Proxy(person, {
+                get: function (target, property) {
+                    if (property === 'password') {
+                        return '****'
+                    }
+                    return target[property]
+                },
+            })
+            console.log('Reading Name', proxy.name)
+            console.log('Reading Age', proxy.age)
+            console.log('Reading Password', proxy.password)
+        </script>
+    </body>
+</html>

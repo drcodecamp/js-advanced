@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basic promise</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Basic Promise</h1>
+        <script async>
+            const myPromise = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject('not enough apples!')
+                }, 3000)
+            })
+            myPromise
+                .then((data) => {
+                    console.log(data)
+                })
+                .catch((err) => {
+                    console.warn('we got error:', err)
+                })
+                .finally(() => {
+                    console.log('Finally!')
+                })
+        </script>
+    </body>
+</html>

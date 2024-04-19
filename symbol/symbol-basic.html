@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Symbol Basic</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Basic Symbol</h1>
+        <script>
+            const symbol1 = Symbol('')
+            const symbol2 = Symbol('')
+            console.log('symbol 1 and 2 equal?', symbol1 === symbol2)
+            const symbol3 = Symbol(10)
+            console.log('symbol 3 and 10 are equal?', symbol3 === 10)
+            const symbol4 = Symbol('doctor')
+            console.log(symbol4 === `Symbol('doctor')`)
+        </script>
+    </body>
+</html>

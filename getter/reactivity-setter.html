@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Reactive State Demo</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Counter: <span id="counter"></span></h1>
+        <h2>Name: <span id="name"></span></h2>
+        <button id="increment">Increment</button>
+        <button id="decrement">Decrement</button>
+
+        <script>
+            const counterState = createReactiveState(0, 'counter')
+            const nameState = createReactiveState('Doctor', 'name')
+            // nameState.setState('dada')
+
+            const incrementButton = document.getElementById('increment')
+            incrementButton.addEventListener('click', () => {
+                counterState.setState((prevCount) => prevCount + 1)
+            })
+
+            const decrementButton = document.getElementById('decrement')
+            decrementButton.addEventListener('click', () => {
+                counterState.setState((prevCount) => prevCount - 1)
+            })
+
+            function useReactiveState(initialState) {
+                let state = initialState
+                const listeners = new Set()
+
+                function setState(newState) {
+                    if (typeof newState === 'function') {
+                        state = newState(state)
+                    } else {
+                        state = newState
+                    }
+                    notifyListeners(state)
+                }
+
+                function notifyListeners(newState) {
+                    listeners.forEach((listener) => listener(newState))
+                }
+
+                function subscribe(listener) {
+                    listeners.add(listener)
+                    return () => {
+                        listeners.delete(listener)
+                    }
+                }
+
+                return { state, setState, subscribe }
+            }
+
+            function createReactiveState(initialState, elementId) {
+                const { state, setState, subscribe } =
+                    useReactiveState(initialState)
+                const element = document.getElementById(elementId)
+
+                if (element) {
+                    const updateElement = (newState) => {
+                        element.textContent = newState
+                    }
+                    subscribe(updateElement)
+                } else {
+                    console.warn(`Element with ID "${elementId}" not found.`)
+                }
+
+                return { state, setState }
+            }
+        </script>
+    </body>
+</html>

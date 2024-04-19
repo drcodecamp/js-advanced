@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pure vs Impure</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Pure vs Impure</h1>
+        <script>
+            let tax = 20
+            const calculateTax = (productPrice) => {
+                return (productPrice * tax) / 100
+            }
+            console.log('Tax price for banana', calculateTax(100))
+            tax = 8
+            console.log(
+                '=> Later in the code Tax price for banana',
+                calculateTax(100)
+            )
+        </script>
+    </body>
+</html>

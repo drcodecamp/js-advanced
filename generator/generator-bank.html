@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Generators Example</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Nasty Bank!</h1>
+        <h2>Please Start</h2>
+        <label>
+            <input type="text" placeholder="Enter Value" />
+        </label>
+        <div>
+            <button onclick="">Continue</button>
+        </div>
+        <script>
+            function* createAtmMachine() {
+                let pinAttempts = 0
+                let maxPingAttempts = 3
+                console.log('Welcome to the Atm!')
+                while (true) {
+                    let userPinCode = yield 'Please Enter Your PinCode!'
+                    pinAttempts++
+                    if (userPinCode === '1234') {
+                        console.log('PIN Accepted')
+                        break
+                    } else if (pinAttempts >= maxPingAttempts) {
+                        console.log(
+                            'Too many incorrect pin  attempts, transaction canceled'
+                        )
+                        return
+                    } else {
+                        console.log('Incorrect Pin Code!, please try again!')
+                    }
+                }
+                const selectedAccount =
+                    yield 'Select account (1) Checking (2) Savings'
+                console.log('user selected', selectedAccount)
+                const userBalance = selectedAccount === '1' ? 2000 : 500
+                const withdrawalAmount = yield 'Enter withdraw amount!'
+                console.log('withdrawalAmount', withdrawalAmount)
+                if (userBalance >= withdrawalAmount) {
+                    console.log(`Dispensing ${withdrawalAmount}`)
+                    yield `New Balance ${userBalance - withdrawalAmount}`
+                } else {
+                    yield 'Insufficient Balance!'
+                }
+                return 'Thank you for using my Bank!'
+            }
+
+            const machine = createAtmMachine()
+
+            document.querySelector('button').addEventListener('click', () => {
+                const inputEl = document.querySelector('input')
+                const userInput = inputEl.value
+                const nextStage = machine.next(userInput)
+                console.log('next', nextStage)
+                const nextStageValue = nextStage.value
+                if (nextStageValue) {
+                    document.querySelector('h2').innerHTML = nextStageValue
+                }
+                inputEl.value = ''
+            })
+        </script>
+    </body>
+</html>

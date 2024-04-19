@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Basic Set</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>this keyword</h1>
+        <script>
+            const userA = {
+                name: 'natanel',
+                wife: 'liat',
+                children: ['liv', 'ariel'],
+                printChildren: function () {
+                    this.children.forEach(function (child) {
+                        console.log(this.wife, child)
+                    })
+                },
+            }
+            userA.printChildren() // Context Loss
+
+            const userB = {
+                name: 'natanel',
+                wife: 'liat',
+                children: ['liv', 'ariel'],
+                printChildren: function () {
+                    this.children.forEach((child) => {
+                        console.log(this.wife, child)
+                    })
+                },
+            }
+            userB.printChildren() // Fixed using arrow functions
+        </script>
+    </body>
+</html>

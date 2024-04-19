@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Weak Map</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Weak Map</h1>
+        <script>
+            const myMap = new Map()
+            let obj = {}
+            myMap.set(obj, 'dana')
+            obj = null
+            console.log(myMap.get(obj))
+        </script>
+    </body>
+</html>

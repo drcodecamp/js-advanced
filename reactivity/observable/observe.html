@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>observe pattern</title>
+        <link href="../../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Observe Pattern</h1>
+        <script>
+            // Game
+            function createGame(homeTeam, awayTeam) {
+                const watchers = []
+
+                function addWatcher(observer) {
+                    watchers.push(observer)
+                }
+
+                function removeWatcher(observer) {
+                    // remove watcher!
+                }
+
+                function notifyWatchers(score) {
+                    watchers.forEach((observer) => {
+                        observer.update(homeTeam, awayTeam, score)
+                    })
+                }
+                return {
+                    watchers,
+                    addWatcher,
+                    removeWatcher,
+                    notifyWatchers,
+                }
+            }
+
+            const game1 = createGame('Real Madrid', 'Barcelona')
+            const game2 = createGame('Manchester United', 'Liverpool')
+
+            function createWatcher(name) {
+                return {
+                    name,
+                    update(homeTeam, awayTeam, score) {
+                        console.log(`${name} received update about:
+             ${homeTeam} ${score.home} - ${score.away} ${awayTeam}
+            `)
+                    },
+                }
+            }
+
+            const daniel = createWatcher('Daniel')
+            const doctor = createWatcher('Doctor')
+            const liat = createWatcher('Liat')
+
+            game1.addWatcher(daniel)
+            game1.addWatcher(doctor)
+            game2.addWatcher(liat)
+
+            game1.notifyWatchers({ home: 1, away: 0 })
+            game2.notifyWatchers({ home: 7, away: 1 })
+        </script>
+    </body>
+</html>

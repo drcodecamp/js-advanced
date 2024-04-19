@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pure vs Impure</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Current way to update Array</h1>
+        <script>
+            const myScores = [100, 100, 90, 58]
+            const updateMyScores = (array) => {
+                const clonedScores = [...array]
+                clonedScores.forEach((score, i) => {
+                    clonedScores[i] = score * 2
+                })
+                return clonedScores
+            }
+            const updatedScores = updateMyScores(myScores)
+            console.log('Stay The Same? YES!', myScores)
+            console.log('New Array ? YES!', updatedScores)
+        </script>
+    </body>
+</html>

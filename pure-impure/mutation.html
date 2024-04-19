@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pure vs Impure</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Pure vs Impure Side Effect</h1>
+        <script>
+            let numA = 5
+            const addNumber = (numB) => {
+                numA += numB
+                return numA
+            }
+            console.log(addNumber(1)) // 5 + 1 ?
+            console.log(addNumber(1)) // Still 5 + 1 ?
+            console.log(addNumber(2)) // Still 5 + 1 ?
+            console.log(addNumber(2)) // Still 5 + 1 ?
+        </script>
+    </body>
+</html>

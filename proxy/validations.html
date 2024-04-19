@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proxy Regex</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Proxy Validation</h1>
+        <script>
+            const person = {
+                name: '',
+                age: 0,
+            }
+            const proxy = new Proxy(person, {
+                set: function (target, property, value) {
+                    if (property === 'name') {
+                        if (!/^[a-zA-Z ]+$/.test(value)) {
+                            throw new Error('שם אינו תקין')
+                        }
+                    } else if (property === 'age') {
+                        if (isNaN(value) || value < 0 || value > 120) {
+                            throw new Error('גיל אינו תקין')
+                        }
+                    }
+                    target[property] = value
+                },
+            })
+            try {
+                proxy.name = 'John Doe' // שם תקין
+                // proxy.name = '1Joh23n Doe' // שם לא תקין
+                proxy.age = 30
+                console.log('הנתונים תקינים')
+            } catch (error) {
+                console.log('הנתונים לא תקינים')
+                console.error(error.message)
+            }
+        </script>
+    </body>
+</html>

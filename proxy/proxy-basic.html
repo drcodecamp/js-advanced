@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proxy Logging</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Proxy Basic</h1>
+        <script>
+            const user = {
+                name: 'doctor',
+                age: 35,
+            }
+            const myProxy = new Proxy(user, {
+                get(target, prop) {
+                    return target[prop] ? target[prop] : 10
+                },
+                set(target, prop, value) {
+                    console.log(`someone try to change '${prop}' to ${value}`)
+                    target[prop] = value > 100 ? target[prop] : value
+                },
+            })
+            myProxy.age = 250
+            console.log('it was changed?', myProxy.age, 'well, NO!')
+        </script>
+    </body>
+</html>

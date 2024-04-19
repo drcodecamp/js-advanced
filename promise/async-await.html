@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Async Await</title>
+        <link href="../css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Async Await</h1>
+        <script async type="module">
+            function getTaxRateFromApi() {
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve(12)
+                    }, 1000)
+                })
+            }
+            async function calcTax(productPrice = 0) {
+                const taxRate = await getTaxRateFromApi()
+                return (taxRate * productPrice) / 100
+            }
+
+            try {
+                const tax = await calcTax(100)
+                console.log('rate for product is:', tax)
+            } catch (err) {
+                console.log('there was an error', err)
+            } finally {
+                console.log('program ended')
+            }
+        </script>
+    </body>
+</html>
